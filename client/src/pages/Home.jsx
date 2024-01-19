@@ -36,7 +36,7 @@ export default function Home() {
 
     const fetchSaleListings = async () => {
       try {
-        const res = await fetch("/api/listing/get?type=sell&limit=4");
+        const res = await fetch("/api/listing/get?type=sale&limit=4");
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
@@ -62,7 +62,7 @@ export default function Home() {
         </div>
         <Link
           to={"/search"}
-          className="text-xs sm:text-sm text-slate-700 font-bold hover:underline"
+          className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
         >
           Let's get started...
         </Link>

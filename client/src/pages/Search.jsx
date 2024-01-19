@@ -70,7 +70,7 @@ export default function Search() {
     if (
       e.target.id === "all" ||
       e.target.id === "rent" ||
-      e.target.id === "sell"
+      e.target.id === "sale"
     ) {
       setSidebardata({ ...sidebardata, type: e.target.id });
     }
@@ -113,6 +113,7 @@ export default function Search() {
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
+
   const onShowMoreClick = async () => {
     const numberOfListings = listings.length;
     const startIndex = numberOfListings;
@@ -153,7 +154,7 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.type === "all"}
               />
-              <span>Rent & Sell</span>
+              <span>Rent & Sale</span>
             </div>
             <div className="flex gap-2">
               <input
@@ -168,12 +169,12 @@ export default function Search() {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                id="sell"
+                id="sale"
                 className="w-5"
                 onChange={handleChange}
-                checked={sidebardata.type === "sell"}
+                checked={sidebardata.type === "sale"}
               />
-              <span>Sell</span>
+              <span>Sale</span>
             </div>
             <div className="flex gap-2">
               <input
@@ -218,7 +219,7 @@ export default function Search() {
               className="border rounded-lg p-3"
             >
               <option value="regularPrice_desc">Price high to low</option>
-              <option value="regularPrice_asc">Price low to high</option>
+              <option value="regularPrice_asc">Price low to hight</option>
               <option value="createdAt_desc">Latest</option>
               <option value="createdAt_asc">Oldest</option>
             </select>
@@ -247,6 +248,7 @@ export default function Search() {
             listings.map((listing) => (
               <ListingItem key={listing._id} listing={listing} />
             ))}
+
           {showMore && (
             <button
               onClick={onShowMoreClick}

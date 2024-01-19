@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-const Header = () => {
+export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const Header = () => {
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
+
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get("searchTerm");
@@ -23,11 +24,11 @@ const Header = () => {
   }, [location.search]);
   return (
     <header className="bg-slate-200 shadow-md">
-      <div className="flex justify-between items-center max-width-6xl mx-auto p-3">
+      <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-            <span className="text-slate-500"> Gojo</span>
-            <span className="text-slate-700"> Estate</span>
+            <span className="text-slate-500">Sahand</span>
+            <span className="text-slate-700">Estate</span>
           </h1>
         </Link>
         <form
@@ -36,17 +37,16 @@ const Header = () => {
         >
           <input
             type="text"
-            placeholder="Search.."
+            placeholder="Search..."
             className="bg-transparent focus:outline-none w-24 sm:w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-
           <button>
             <FaSearch className="text-slate-600" />
           </button>
         </form>
-        <ul className="flex gap-4 cursor-pointer ">
+        <ul className="flex gap-4">
           <Link to="/">
             <li className="hidden sm:inline text-slate-700 hover:underline">
               Home
@@ -72,6 +72,4 @@ const Header = () => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}
